@@ -3,26 +3,25 @@
 
 public class EvtPublisher
 {
-    public delegate void del(string x);
-    public event del evt;
+    //public delegate void del(string x);
+    //public event del evt;
+
+    public EventHandler  evt;
 
     public void checkbalance(int x)
     {
         if (x > 250)
         {
-            evt("ATTENTION ! The Current balance exceeds 250...");
+            evt(this,EventArgs.Empty);
         }
-        else
-        {
-            Console.WriteLine("the balance is below 250");
-        }
+
     }
 }
 public class EvtSubscriber
 {
-    public void HandleTheEvent(string a)
+    public void HandleTheEvent(object sender,EventArgs e)
     {
-        Console.WriteLine(a);
+        Console.WriteLine("ATENTTION "+sender+"is advising the balance is over 250..");
     }
 }
 
@@ -36,6 +35,6 @@ class program
 
         ep.evt += es.HandleTheEvent;
 
-        ep.checkbalance(244);
+        ep.checkbalance(251);
     }
 }
