@@ -12,6 +12,10 @@ public class EvtPublisher
         {
             evt("ATTENTION ! The Current balance exceeds 250...");
         }
+        else
+        {
+            Console.WriteLine("the balance is below 250");
+        }
     }
 }
 public class EvtSubscriber
@@ -31,5 +35,7 @@ class program
         EvtSubscriber es = new EvtSubscriber();
 
         ep.evt += es.HandleTheEvent;
+
+        ep.checkbalance(244);
     }
 }
